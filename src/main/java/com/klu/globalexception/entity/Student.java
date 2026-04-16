@@ -1,4 +1,4 @@
-package com.klu.globalexception.model;
+package com.klu.globalexception.entity;
 
 public class Student {
 
@@ -12,9 +12,15 @@ public class Student {
         this.course = course;
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public String getCourse() { return course; }
+    public String getCourse() {
+        return course;
+    }
 }

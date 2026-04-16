@@ -1,28 +1,25 @@
 package com.klu.globalexception.controller;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
-import com.klu.globalexception.exception.StudentNotFoundException;
-import com.klu.globalexception.model.Student;
+import com.klu.globalexception.entity.Student;
+import com.klu.globalexception.service.StudentService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/students")
 public class StudentController {
 
-    List<Student> students = Arrays.asList(
-            new Student(31488, "sohan", "CSE"),
-            new Student(31489, "sohan", "AI")
-    );
+        private final StudentService studentService;
 
-    @GetMapping("/student/{id}")
-    public Student getStudent(@PathVariable int id) {
+        public StudentController(StudentService studentService) {
+                this.studentService = studentService;
+        }
 
-        return students.stream()
-                .filter(s -> s.getId() == id)
-                .findFirst()
-                .orElseThrow(() ->
-                        new StudentNotFoundException("Student with ID " + id + " not found"));
+        @GetMapping("/{id}")
+        public ResponseEntity<Student> getStudent(@PathVariable int id) {
+                return ResponseEntity.ok(studentService.getStudentById(id));
     }
 }

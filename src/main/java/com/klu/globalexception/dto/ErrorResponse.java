@@ -1,4 +1,4 @@
-package com.klu.globalexception.model;
+package com.klu.globalexception.dto;
 
 import java.time.LocalDateTime;
 
@@ -14,9 +14,15 @@ public class ErrorResponse {
         this.statusCode = statusCode;
     }
 
-    public LocalDateTime getTimestamp() { return timestamp; }
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
 
-    public String getMessage() { return message; }
+    public String getMessage() {
+        return message;
+    }
 
-    public int getStatusCode() { return statusCode; }
+    public int getStatusCode() {
+        return statusCode;
+    }
 }
